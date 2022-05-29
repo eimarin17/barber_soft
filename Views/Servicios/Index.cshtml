@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BarberSoft.Models.Servicios>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Administración de Servicios</h1>
+
+<div class="col-md-6 mt-2" style="float:right">
+    <a class="btn btn-block btn-primary btn-sm" asp-action="Create">Crear nuevo servicio</a>
+</div>
+
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id">Detalle</a> |
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
