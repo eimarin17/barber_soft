@@ -39,5 +39,20 @@ namespace BarberSoft.Controllers
             //return Json(serie.GetDataDummy());
             return Json(dataSerie);
         }
+
+        public JsonResult DataBarras()
+        {
+            SerieBarras[] dataSerie = _context.Empleados.Include(i => i.Ventas).Select(s => new
+            SerieBarras
+            {
+                name = string.Concat(s.Nombres, " ", s.Apellidos),
+                y = s.Ventas.Count()
+
+            }).ToArray();
+
+            //SeriePastel serie = new SeriePastel();
+            //return Json(serie.GetDataDummy());
+            return Json(dataSerie);
+        }
     }
 }
